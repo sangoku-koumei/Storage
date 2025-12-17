@@ -70,6 +70,58 @@
         "reveal": "always",
         "panel": "new"
       }
+    },
+    {
+      "label": "文字化け対応: Git設定を修正",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/git-auto-tools/fix-git-encoding.ps1"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false
+      }
+    },
+    {
+      "label": "文字化け対応: 文字化けファイルを検出",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/git-auto-tools/fix-corrupted-files.ps1"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false
+      }
+    },
+    {
+      "label": "文字化け対応: 文字化けファイルを検出・自動修復",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/git-auto-tools/fix-corrupted-files.ps1",
+        "-AutoFix"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false
+      }
     }
   ]
 }
