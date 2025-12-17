@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Git: すべてをプッシュ（add + commit + push）",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/git-auto-tools/git-auto-push.ps1",
+        "-autoCommit"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "focus": false,
+        "clear": true
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Git: ステージングのみ（add）",
+      "type": "shell",
+      "command": "git",
+      "args": ["add", "."],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Git: コミット（commit）",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "$msg = Read-Host 'コミットメッセージを入力してください'; if ([string]::IsNullOrWhiteSpace($msg)) { $msg = '自動コミット: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm') }; git commit -m $msg"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Git: プッシュ（push）",
+      "type": "shell",
+      "command": "git",
+      "args": ["push"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Git: ステータス確認（status）",
+      "type": "shell",
+      "command": "git",
+      "args": ["status"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}
+

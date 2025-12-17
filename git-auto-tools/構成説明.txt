@@ -1,0 +1,27 @@
+Git自動プッシュツール - ファイル構成
+
+このフォルダには、CursorでGit操作を自動化するためのツールが含まれています。
+
+【ファイル一覧】
+1. git-auto-push.ps1
+   - メインのPowerShellスクリプト
+   - Git操作（add, commit, push）を自動化
+   - PowerShellネイティブ構文のみ使用（&&などは使用していません）
+
+2. README.md
+   - 使い方ガイド
+   - クイックスタート手順
+   - トラブルシューティング
+
+3. keybindings.json.example
+   - キーボードショートカット設定の例
+   - Ctrl + Shift + G でGitプッシュを実行可能に
+
+【使用方法】
+- Cursorで Ctrl + Shift + P → "Tasks: Run Task" → "Git: すべてをプッシュ（add + commit + push）" を選択
+- 詳細は README.md を参照
+
+【注意事項】
+- すべてのスクリプトはPowerShellネイティブ構文で記述されています
+- && や || などのbash固有の構文は使用していません
+
