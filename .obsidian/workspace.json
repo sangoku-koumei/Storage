@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "06359894ffd45d0f",
+        "id": "96db602adb2319c0",
         "type": "tabs",
         "children": [
           {
-            "id": "85e029287a387a3f",
+            "id": "9f6c168cf4f10637",
             "type": "leaf",
             "state": {
               "type": "graph",
@@ -179,13 +179,22 @@
       "bases:Create new base": false
     }
   },
-  "active": "85e029287a387a3f",
+  "active": "9f6c168cf4f10637",
   "lastOpenFiles": [
+    "ユニコの脳みそ/00/恋愛偏差値（LCIQ）/2025-12-26_LCIQ完全攻略マスターバイブル.md",
+    "2025-12-23-作業メモ.md",
+    "2025-12-23.md",
+    "無題のファイル.canvas",
+    "2025-12-22-インスタ動画解析結果.md",
+    "インスタ動画解析結果.md",
+    "ユニコの脳みそ.canvas",
+    "2025-12-17-ツール展開メモ.md",
+    "git-auto-tools/2025-12-22-README.md",
+    "git-auto-tools/2025-12-22-文字化け対応ツール-使い方.md",
     "obsidianルール.md",
     "作業メモ20251209.md",
     "Kindleアイデア_06_赤ずきん.md",
     "2025-12-22.md",
-    "無題のファイル.canvas",
     "2025-12-21-作業メモ.md",
     "Welcome.md",
     "プロファイル.md",
