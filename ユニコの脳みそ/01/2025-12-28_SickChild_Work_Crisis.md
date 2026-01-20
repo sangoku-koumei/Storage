@@ -1,4 +1,12 @@
-# 3歳の子供が熱を出して泣いているのに、仕事が進まないイライラでモヤモヤする自分へ
+---
+tags: [Parenting, WorkLifeBalance, MentalHealth, GuiltManagement, Resilience, CrisisManagement, 01]
+date: 2025-12-28
+source: Personal_Reflections_Log
+---
+
+# 🤒 3歳の子供が熱を出して泣いているのに、仕事が進まないイライラでモヤモヤする自分へ (The Caregiver's Dilemma)
+
+[[01_下書き一覧|⬅️ 01：下書き一覧へ戻る]]
 
 ## 序章：高熱の小さな体と、冷たいPC画面の狭間で
 

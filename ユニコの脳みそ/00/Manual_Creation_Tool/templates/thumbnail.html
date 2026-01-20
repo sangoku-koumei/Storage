@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Thumbnail Preview</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #333;
+            height: 100vh;
+            font-family: "Hiragino Kaku Gothic ProN", "Impact", sans-serif;
+        }
+
+        .thumbnail-container {
+            width: 1280px;
+            height: 720px;
+
+            /* Dynamic Background */
+            background: {
+                % if img_url %
+            }
+
+            linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url('{{ img_url }}') center/cover no-repeat {
+                % else %
+            }
+
+                {
+                    {
+                    bg_style
+                }
+            }
+
+                {
+                % endif %
+            }
+
+            ;
+
+            ;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main-text {
+            font-size: 100px;
+            font-weight: 900;
+            color: #fff;
+            /* YouTuber Style Text Border */
+            text-shadow:
+                6px 6px 0 #000,
+                -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000;
+            line-height: 1.1;
+            transform: rotate(-2deg);
+            z-index: 10;
+            padding: 20px;
+        }
+
+        .sub-text {
+            font-size: 60px;
+            font-weight: bold;
+            color: #ffeb3b;
+            /* Yellow */
+            background: #000;
+            padding: 10px 40px;
+            transform: rotate(1deg);
+            margin-top: 20px;
+            z-index: 10;
+        }
+
+        .decoration {
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.2;
+            color: white;
+            font-weight: bold;
+        }
+
+        .ribbon {
+            position: absolute;
+            top: 40px;
+            right: -60px;
+            background: #f00;
+            color: #fff;
+            width: 300px;
+            text-align: center;
+            transform: rotate(45deg);
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="thumbnail-container">
+        <div class="ribbon">完全保存版</div>
+        <div class="decoration" style="top: -50px; left: -50px;">SECRET</div>
+        <div class="decoration" style="bottom: -50px; right: -50px;">Method</div>
+
+        <div class="main-text">
+            {{ main_text }}
+        </div>
+        <div class="sub-text">
+            {{ sub_text }}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .data-table th {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+
+        .highlight {
+            background: #e8f6f3;
+            color: #16a085;
+            padding: 15px;
+            border-left: 5px solid #16a085;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>{{ title }}</h1>
+
+    {% for section in sections %}
+    <div class="card">
+        <h2>{{ section.title }}</h2>
+        <div class="content">
+            {{ section.content | safe }}
+        </div>
+
+        {% if section.chart_data %}
+        <div class="chart-container">
+            <canvas id="chart_{{ loop.index }}"></canvas>
+        </div>
+        <script>
+            new Chart(document.getElementById('chart_{{ loop.index }}'), {
+                type: '{{ section.chart_type }}',
+                data: {{ section.chart_data | tojson }},
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        </script>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+</body>
+
+</html>

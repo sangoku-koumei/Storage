@@ -1,0 +1,9 @@
+openai
+streamlit
+pandas
+requests
+beautifulsoup4
+duckduckgo-search
+schedule
+selenium
+webdriver-manager

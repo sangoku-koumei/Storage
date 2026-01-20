@@ -1,4 +1,12 @@
-# 昨日Google AI PROの契約をしたのに、夜に半額キャンペーンをやっていると知ってモヤモヤする
+---
+tags: [GoogleAI, Gemini, Subscriptions, ConsumerPsychology, MarketingStrategy, Mindset, 01]
+date: 2025-12-28
+source: Personal_Reflections_Log
+---
+
+# 💸 Google AI Pro「契約翌日に半額キャンペーン」の悲劇：損失回避と心のレジリエンス (The 50% Off Tragedy)
+
+[[01_下書き一覧|⬅️ 01：下書き一覧へ戻る]]
 
 ## 序章：24時間の残酷なトリック
 
