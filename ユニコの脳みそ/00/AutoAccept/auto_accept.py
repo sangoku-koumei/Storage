@@ -78,17 +78,11 @@ def find_button_hybrid():
                 name = ctrl.Name.strip()
                 if ctrl.ControlTypeName == "ButtonControl" and any(kw in name for kw in ["Accept", "Yes (Done)", "Allow", "Done", "Start Session", "OK", "Confirm", "Execute", "Approve", "Proceed", "Next", "Continue", "承認", "次へ", "実行"]):
                     rect = ctrl.BoundingRectangle
-                    is_offscreen = (rect.bottom < vsc_rect.top or rect.top > vsc_rect.bottom)
-                    if is_offscreen or rect.width <= 0:
+                    # ヒットしたボタンの可視性をチェック（VSCodeの非表示エリア対策）
                     if rect.width > 0 and rect.height > 0:
-                        # ヒットしたボタンの可視性をチェック（VSCodeの非表示エリア対策）
                         if rect.top > vsc_rect.top and rect.bottom < vsc_rect.bottom:
                             cx, cy = (rect.left + rect.right) // 2, (rect.top + rect.bottom) // 2
                             return {"pos": (cx, cy), "type": "deep", "name": name, "ctrl": ctrl}
-                    
-                    if rect.width > 0 and rect.height > 0:
-                        cx, cy = (rect.left + rect.right) // 2, (rect.top + rect.bottom) // 2
-                        return {"pos": (cx, cy), "type": "deep", "name": name, "ctrl": ctrl}
     except Exception: pass
     
     return None
