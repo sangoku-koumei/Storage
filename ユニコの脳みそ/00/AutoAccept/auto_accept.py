@@ -81,12 +81,14 @@ def find_button_hybrid():
                     is_offscreen = (rect.bottom < vsc_rect.top or rect.top > vsc_rect.bottom)
                     if is_offscreen or rect.width <= 0:
                         try:
+                            # 積極的なスクロール介入
                             ctrl.SetFocus()
-                            if hasattr(ctrl, "ScrollIntoView"):
-                                ctrl.ScrollIntoView()
-                            win32api.SendMessage(vsc.NativeWindowHandle, win32con.WM_VSCROLL, win32con.SB_PAGEDOWN, 0)
-                            time.sleep(0.2)
-                            rect = ctrl.BoundingRectangle
+                            for _ in range(3): # 3回ページダウンを試みる
+                                win32api.SendMessage(vsc.NativeWindowHandle, win32con.WM_VSCROLL, win32con.SB_PAGEDOWN, 0)
+                                time.sleep(0.3)
+                                rect = ctrl.BoundingRectangle
+                                if rect.width > 0 and rect.top > vsc_rect.top:
+                                    break
                         except: pass
                     
                     if rect.width > 0 and rect.height > 0:
