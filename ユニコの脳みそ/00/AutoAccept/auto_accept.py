@@ -80,16 +80,11 @@ def find_button_hybrid():
                     rect = ctrl.BoundingRectangle
                     is_offscreen = (rect.bottom < vsc_rect.top or rect.top > vsc_rect.bottom)
                     if is_offscreen or rect.width <= 0:
-                        try:
-                            # 積極的なスクロール介入
-                            ctrl.SetFocus()
-                            for _ in range(3): # 3回ページダウンを試みる
-                                win32api.SendMessage(vsc.NativeWindowHandle, win32con.WM_VSCROLL, win32con.SB_PAGEDOWN, 0)
-                                time.sleep(0.3)
-                                rect = ctrl.BoundingRectangle
-                                if rect.width > 0 and rect.top > vsc_rect.top:
-                                    break
-                        except: pass
+                    if rect.width > 0 and rect.height > 0:
+                        # ヒットしたボタンの可視性をチェック（VSCodeの非表示エリア対策）
+                        if rect.top > vsc_rect.top and rect.bottom < vsc_rect.bottom:
+                            cx, cy = (rect.left + rect.right) // 2, (rect.top + rect.bottom) // 2
+                            return {"pos": (cx, cy), "type": "deep", "name": name, "ctrl": ctrl}
                     
                     if rect.width > 0 and rect.height > 0:
                         cx, cy = (rect.left + rect.right) // 2, (rect.top + rect.bottom) // 2
