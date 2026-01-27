@@ -76,7 +76,7 @@ def find_button_hybrid():
             vsc_rect = vsc.BoundingRectangle
             for ctrl, depth in auto.WalkControl(vsc, maxDepth=50):
                 name = ctrl.Name.strip()
-                if ctrl.ControlTypeName == "ButtonControl" and any(kw in name for kw in ["Accept", "Yes (Done)", "Allow", "Done", "Start Session", "OK", "Confirm", "Execute"]):
+                if ctrl.ControlTypeName == "ButtonControl" and any(kw in name for kw in ["Accept", "Yes (Done)", "Allow", "Done", "Start Session", "OK", "Confirm", "Execute", "Approve", "Proceed", "Next", "Continue", "承認", "次へ", "実行"]):
                     rect = ctrl.BoundingRectangle
                     is_offscreen = (rect.bottom < vsc_rect.top or rect.top > vsc_rect.bottom)
                     if is_offscreen or rect.width <= 0:
