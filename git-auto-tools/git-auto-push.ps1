@@ -47,7 +47,7 @@ while ($true) {
                     while ($retryCount -lt 3) {
                         git push origin $currentBranch 2>$null
                         if ($LASTEXITCODE -eq 0) {
-                            Log-Message "✅ 同期が正常に完了しました。"
+                            Log-Message " 同期が正常に完了しました。"
                             break
                         } else {
                             $retryCount++
@@ -56,9 +56,6 @@ while ($true) {
                         }
                     }
                 }
-            } else {
-                # 変更がない場合でも、定期的にプルして最新を確認するなどの処理も検討可能
-                # 今回はログを汚さないよう静止
             }
         }
     }
