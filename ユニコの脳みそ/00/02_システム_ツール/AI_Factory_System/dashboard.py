@@ -113,7 +113,8 @@ class ToolDashboard:
                     encoding='utf-8',
                     errors='replace',
                     creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0,
-                    bufsize=1
+                    bufsize=1,
+                    cwd=r"c:\Users\user\Desktop\保管庫" if name == "git_sync" else None
                 )
                 
                 status_label.config(text="稼働中", fg="green")

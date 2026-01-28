@@ -1,6 +1,10 @@
-﻿# Git自動同期スクリプト (仮想脳専用)
+# Git自動同期スクリプト (仮想脳専用)
 param([switch]$autoCommit, [string]$message = "", [int]$interval = 300)
 $ErrorActionPreference = "Stop"
+
+# 文字化け対策：コンソールの出力をUTF-8に固定
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$OutputEncoding = [System.Text.Encoding]::UTF8
 
 function Log-Message($msg) {
     $timestamp = Get-Date -Format "HH:mm:ss"
