@@ -70,7 +70,28 @@ class ToolDashboard:
     def log(self, target, msg):
         target_widget = self.accept_log if target == "accept" else self.git_log
         timestamp = datetime.now().strftime("[%H:%M:%S] ")
-        target_widget.insert(tk.END, timestamp + msg + "\n")
+        
+        # Git出力の日本語変換マッピング
+        translations = {
+            "SYNC_SYSTEM_START": "--- 仮想脳 同期システム 起動 (監視モード) ---",
+            "GIT_INIT": "Gitを初期化しています...",
+            "WARN_NO_REMOTE": "警告: リモートが未設定です。同期をスキップします。",
+            "CHANGE_DETECTED": "変更を検知しました。同期を開始します...",
+            "COMMIT_START": "コミット実行中",
+            "PUSH_START": "プッシュ実行中...",
+            "SUCCESS_SYNC": "✅ 同期が正常に完了しました。",
+            "RETRY_ATTEMPT": "再試行中",
+            "ERROR_SYNC_FAILED": "❌ 同期に失敗しました。接続を確認してください。",
+            "FATAL_ERROR": "⚠️ 重大なエラーが発生しました"
+        }
+        
+        display_msg = msg
+        for key, val in translations.items():
+            if key in msg:
+                display_msg = msg.replace(key, val)
+                break
+        
+        target_widget.insert(tk.END, timestamp + display_msg + "\n")
         target_widget.see(tk.END)
 
     def toggle_auto_accept(self):
