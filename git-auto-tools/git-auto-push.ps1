@@ -1,4 +1,4 @@
-# Git自動プッシュスクリプト for Cursor
+﻿# Git自動プッシュスクリプト for Antigravity
 # 使い方: .\git-auto-push.ps1 [-autoCommit] [-message "コミットメッセージ"]
 
 param(
@@ -11,16 +11,13 @@ $ErrorActionPreference = "Stop"
 
 # カラー出力用
 function Write-ColorOutput($ForegroundColor) {
-    $fc = $host.UI.RawUI.ForegroundColor
-    $host.UI.RawUI.ForegroundColor = $ForegroundColor
     if ($args) {
-        Write-Output $args
+        Write-Host $args -ForegroundColor $ForegroundColor
     }
-    $host.UI.RawUI.ForegroundColor = $fc
 }
 
 Write-ColorOutput Cyan "=========================================="
-Write-ColorOutput Cyan "  Git自動プッシュツール"
+Write-ColorOutput Cyan "  Git自動プッシュツール for Antigravity"
 Write-ColorOutput Cyan "=========================================="
 Write-Output ""
 
@@ -33,17 +30,11 @@ Write-Output ""
 try {
     $gitRoot = git rev-parse --show-toplevel 2>$null
     if (-not $gitRoot) {
-        Write-ColorOutput Yellow "警告: Gitリポジトリが見つかりません。初期化しますか？ (Y/N)"
-        $response = Read-Host
-        if ($response -eq "Y" -or $response -eq "y") {
-            git init
-            Write-ColorOutput Green "Gitリポジトリを初期化しました。"
-        } else {
-            Write-ColorOutput Red "処理を中止しました。"
-            exit 1
-        }
+        Write-ColorOutput Yellow "警告: Gitリポジトリが見つかりません。現在のフォルダで初期化します。"
+        git init
     }
-} catch {
+}
+catch {
     Write-ColorOutput Red "エラー: Gitリポジトリの確認に失敗しました。"
     exit 1
 }
@@ -52,12 +43,7 @@ try {
 $remoteUrl = git remote get-url origin 2>$null
 if (-not $remoteUrl) {
     Write-ColorOutput Yellow "警告: リモートリポジトリが設定されていません。"
-    Write-ColorOutput Yellow "リモートリポジトリのURLを入力してください（例: https://github.com/user/repo.git）:"
-    $newRemote = Read-Host
-    if ($newRemote) {
-        git remote add origin $newRemote
-        Write-ColorOutput Green "リモートリポジトリを追加しました: $newRemote"
-    }
+    exit 0
 }
 
 # 変更されたファイルを確認
@@ -78,7 +64,8 @@ Write-ColorOutput Cyan "ステージング中..."
 try {
     git add .
     Write-ColorOutput Green "✓ ステージング完了"
-} catch {
+}
+catch {
     Write-ColorOutput Red "✗ ステージングエラー: $_"
     exit 1
 }
@@ -87,20 +74,26 @@ Write-Output ""
 # コミット
 if ($autoCommit) {
     if (-not $message) {
-        # コミットメッセージを自動生成（日時 + 変更されたファイル数）
         $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm"
         $fileCount = (git status --short | Measure-Object -Line).Lines
-        $message = "自動コミット: $timestamp ($fileCount ファイル)"
+        $message = "Antigravity 自動同期: $timestamp ($fileCount ファイル)"
     }
     
     Write-ColorOutput Cyan "コミット中..."
     Write-Output "メッセージ: $message"
-    try {
-        git commit -m $message
-        Write-ColorOutput Green "✓ コミット完了"
-    } catch {
-        Write-ColorOutput Red "✗ コミットエラー: $_"
-        exit 1
+    
+    $stagedChanges = git diff --cached --name-only
+    if ($stagedChanges) {
+        try {
+            git commit -m $message
+            Write-ColorOutput Green "✓ コミット完了"
+        }
+        catch {
+            Write-ColorOutput Red "✗ コミットエラー: $_"
+        }
+    }
+    else {
+        Write-Output "コミットする変更がありません。"
     }
     Write-Output ""
 }
@@ -108,36 +101,24 @@ if ($autoCommit) {
 # プッシュ
 Write-ColorOutput Cyan "プッシュ中..."
 try {
-    # 現在のブランチを取得
     $branch = git branch --show-current
-    if (-not $branch) {
-        $branch = "main"
-        git branch -M main 2>$null
-    }
+    if (-not $branch) { $branch = "main" }
     
-    # リモートが設定されているか確認
-    $remoteExists = git remote get-url origin 2>$null
-    if ($remoteExists) {
-        git push -u origin $branch
-        Write-ColorOutput Green "✓ プッシュ完了 ($branch ブランチ)"
-        
-        # 最終確認: git log で最新のコミットが反映されているか
-        Write-ColorOutput Cyan "プッシュの最終確認中..."
-        $latestCommit = git log -1 --pretty=format:"%h - %s (%cr)"
-        Write-Output "最新のコミット: $latestCommit"
-    } else {
-        Write-ColorOutput Yellow "警告: リモートリポジトリが設定されていません。プッシュをスキップします。"
-    }
-} catch {
+    git push origin $branch
+    Write-ColorOutput Green "✓ プッシュ完了 ($branch ブランチ)"
+    
+    Write-ColorOutput Cyan "同期の最終確認中..."
+    $latestCommit = git log -1 --pretty=format:"%h - %s (%cr)"
+    Write-Output "最新のコミット: $latestCommit"
+}
+catch {
     Write-ColorOutput Red "✗ プッシュエラー: $_"
-    # ネットワークエラーなどの場合はリトライのヒント
-    Write-ColorOutput Yellow "ネットワーク接続を確認してください。"
 }
 
-# --- デスクトップファイルのバックアップ (追加) ---
+# --- デスクトップファイルのバックアップ ---
 Write-Output ""
 Write-ColorOutput Cyan "------------------------------------------"
-Write-ColorOutput Cyan "  デスクトップファイルのバックアップ開始"
+Write-ColorOutput Cyan "  デスクトップバックアップ (Antigravity Sync)"
 Write-ColorOutput Cyan "------------------------------------------"
 
 $desktopPath = [Environment]::GetFolderPath("Desktop")
@@ -147,26 +128,27 @@ if (-not (Test-Path $destDesktopBackup)) {
     New-Item -ItemType Directory -Path $destDesktopBackup -Force | Out-Null
 }
 
-Write-Output "コピー中: $desktopPath -> $destDesktopBackup"
+Write-Output "同期中: $desktopPath -> $destDesktopBackup"
 try {
-    # .git フォルダなどは除外してコピー (Robocopyを使用すると効率的)
-    robocopy $desktopPath $destDesktopBackup /MIR /XD .git .vscode .gemini /R:1 /W:1 /NFL /NDL /NJH /NJS /nc /ns /np
-    Write-ColorOutput Green "✓ デスクトップのバックアップ完了"
+    $robocopyArgs = @($desktopPath, $destDesktopBackup, "/MIR", "/XD", ".git", ".vscode", ".gemini", "/R:1", "/W:1", "/NFL", "/NDL", "/NJH", "/NJS", "/nc", "/ns", "/np")
+    $process = Start-Process robocopy -ArgumentList $robocopyArgs -Wait -NoNewWindow -PassThru
     
-    # 変更があればコミット
-    git add $destDesktopBackup
-    $status = git status --short $destDesktopBackup
-    if ($status) {
-        git commit -m "Desktop auto backup: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
-        git push origin $branch
-        Write-ColorOutput Green "✓ デスクトップの変更をGitに反映しました"
+    if ($process.ExitCode -lt 8) {
+        Write-ColorOutput Green "✓ デスクトップ同期完了"
+        
+        git add $destDesktopBackup
+        if (git diff --cached --name-only $destDesktopBackup) {
+            git commit -m "Antigravity Desktop backup: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+            git push origin $branch
+            Write-ColorOutput Green "✓ デスクトップの変更をGitに反映しました"
+        }
     }
-} catch {
+}
+catch {
     Write-ColorOutput Red "✗ デスクトップバックアップ中にエラーが発生しました"
 }
 
 Write-Output ""
 Write-ColorOutput Green "=========================================="
-Write-ColorOutput Green "  処理が完了しました！"
+Write-ColorOutput Green "  すべての同期が正常に完了しました！"
 Write-ColorOutput Green "=========================================="
-
