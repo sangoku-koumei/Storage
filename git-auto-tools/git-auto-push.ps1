@@ -120,12 +120,49 @@ try {
     if ($remoteExists) {
         git push -u origin $branch
         Write-ColorOutput Green "✓ プッシュ完了 ($branch ブランチ)"
+        
+        # 最終確認: git log で最新のコミットが反映されているか
+        Write-ColorOutput Cyan "プッシュの最終確認中..."
+        $latestCommit = git log -1 --pretty=format:"%h - %s (%cr)"
+        Write-Output "最新のコミット: $latestCommit"
     } else {
         Write-ColorOutput Yellow "警告: リモートリポジトリが設定されていません。プッシュをスキップします。"
     }
 } catch {
     Write-ColorOutput Red "✗ プッシュエラー: $_"
-    exit 1
+    # ネットワークエラーなどの場合はリトライのヒント
+    Write-ColorOutput Yellow "ネットワーク接続を確認してください。"
+}
+
+# --- デスクトップファイルのバックアップ (追加) ---
+Write-Output ""
+Write-ColorOutput Cyan "------------------------------------------"
+Write-ColorOutput Cyan "  デスクトップファイルのバックアップ開始"
+Write-ColorOutput Cyan "------------------------------------------"
+
+$desktopPath = [Environment]::GetFolderPath("Desktop")
+$destDesktopBackup = Join-Path $currentDir "Desktop_Backup"
+
+if (-not (Test-Path $destDesktopBackup)) {
+    New-Item -ItemType Directory -Path $destDesktopBackup -Force | Out-Null
+}
+
+Write-Output "コピー中: $desktopPath -> $destDesktopBackup"
+try {
+    # .git フォルダなどは除外してコピー (Robocopyを使用すると効率的)
+    robocopy $desktopPath $destDesktopBackup /MIR /XD .git .vscode .gemini /R:1 /W:1 /NFL /NDL /NJH /NJS /nc /ns /np
+    Write-ColorOutput Green "✓ デスクトップのバックアップ完了"
+    
+    # 変更があればコミット
+    git add $destDesktopBackup
+    $status = git status --short $destDesktopBackup
+    if ($status) {
+        git commit -m "Desktop auto backup: $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+        git push origin $branch
+        Write-ColorOutput Green "✓ デスクトップの変更をGitに反映しました"
+    }
+} catch {
+    Write-ColorOutput Red "✗ デスクトップバックアップ中にエラーが発生しました"
 }
 
 Write-Output ""
