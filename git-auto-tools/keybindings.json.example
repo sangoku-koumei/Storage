@@ -1,0 +1,9 @@
+[
+  {
+    "key": "ctrl+shift+g",
+    "command": "workbench.action.tasks.runTask",
+    "args": "Git: すべてをプッシュ（add + commit + push）",
+    "when": "!inDebugMode"
+  }
+]
+

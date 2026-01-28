@@ -1,0 +1,8 @@
+openai
+duckduckgo-search
+jinja2
+python-dotenv
+beautifulsoup4
+requests
+streamlit
+youtube-transcript-api

@@ -1,0 +1,58 @@
+====================================
+ai_prompts シート貼り付け用データ
+====================================
+
+【貼り付け方法】
+1. 以下の行をすべてコピー
+2. Googleスプレッドシートの「ai_prompts」シートを開く
+3. A1セルを選択
+4. 貼り付け（Ctrl+V / Cmd+V）
+
+【確認事項】
+✓ A列：prompt_id
+✓ B列：prompt_type
+✓ C列：product_id
+✓ D列：title
+✓ E列：content
+✓ F列：active
+✓ G列：sort_order
+✓ H列：notes
+
+------------------------------------
+【ここからコピー】
+------------------------------------
+
+prompt_id	prompt_type	product_id	title	content	active	sort_order	notes
+prompt_free_001	love_reading	FREE_001	溺愛され体験無料鑑定プロンプト	prompt_FREE_001.txt	TRUE	1	無料鑑定・溺愛体験（500文字）
+prompt_paid_5000	love_reading	PAID_5000	彼の本心リーディング鑑定プロンプト	prompt_PAID_5000.txt	TRUE	2	有料鑑定5000円・彼の本心（2000-3000文字）
+prompt_paid_10000	love_reading	PAID_10000	溺愛スイッチ発動鑑定プロンプト	prompt_PAID_10000.txt	TRUE	3	有料鑑定10000円・溺愛スイッチ（5000-8000文字）
+prompt_paid_30000	love_reading	PAID_30000	溺愛体質完全変換・運命転換鑑定プロンプト	prompt_PAID_30000.txt	TRUE	4	最高級鑑定30000円・溺愛体質変換（10000文字以上）
+prompt_subscription	love_reading	SUBSCRIPTION_MONTHLY	溺愛サポート月次配信プロンプト	prompt_SUBSCRIPTION_MONTHLY.txt	TRUE	5	サブスク月次配信（1500-2000文字）
+
+------------------------------------
+【ここまでコピー】
+------------------------------------
+
+====================================
+■ カラムの説明
+====================================
+
+prompt_id：プロンプトの一意なID
+prompt_type：プロンプトのタイプ（love_reading = 恋愛鑑定）
+product_id：対応する商品ID（FREE_001, PAID_5000など）
+title：プロンプトの名前
+content：プロンプトファイル名（実際のプロンプトはファイルに記載）
+active：有効/無効（TRUE = 有効、FALSE = 無効）
+sort_order：表示順序
+notes：備考（文字数や用途）
+
+====================================
+■ 使い方
+====================================
+
+1. このファイルの【ここからコピー】〜【ここまで】をコピー
+2. スプレッドシートのA1セルに貼り付け
+3. 実際のプロンプト内容は各ファイル（prompt_xxx.txt）に記載されています
+4. プロンプトを修正する場合は各ファイルを直接編集してください
+
+====================================

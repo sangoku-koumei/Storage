@@ -1,0 +1,96 @@
+{
+    "name": "SNS Automation Prototype",
+    "flow": [
+        {
+            "id": 1,
+            "module": "notion:watchDatabaseItems",
+            "version": 1,
+            "parameters": {
+                "databaseId": "{{databaseId}}",
+                "watch": "updated_time",
+                "limit": 1
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                }
+            }
+        },
+        {
+            "id": 2,
+            "module": "openai-gpt-3:createCompletion",
+            "version": 3,
+            "parameters": {
+                "model": "gpt-4o",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "あなたはSNSマーケティングのプロです。入力されたテーマを元に、共感を呼ぶ投稿を作成してください。出力はJSON形式で {\"caption\": \"本文\", \"image_prompt\": \"画像指示\"} としてください。"
+                    },
+                    {
+                        "role": "user",
+                        "content": "{{1.properties_value.Topic.title[].plain_text}}"
+                    }
+                ]
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                }
+            }
+        },
+        {
+            "id": 3,
+            "module": "notion:updateDatabaseitem",
+            "version": 1,
+            "parameters": {
+                "databaseId": "{{databaseId}}",
+                "pageId": "{{1.pageId}}"
+            },
+            "mapper": {
+                "properties": {
+                    "Caption": {
+                        "rich_text": [
+                            {
+                                "text": {
+                                    "content": "{{2.choices[].message.content}}"
+                                }
+                            }
+                        ]
+                    },
+                    "Status": {
+                        "select": {
+                            "name": "Review"
+                        }
+                    }
+                }
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "instant": false,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "sequential": false,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false
+        },
+        "designer": {
+            "orphans": []
+        }
+    }
+}

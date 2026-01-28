@@ -1,0 +1,236 @@
+{
+  "main": {
+    "id": "597f21c6247c8aea",
+    "type": "split",
+    "children": [
+      {
+        "id": "8602b2ad5b6b6ce2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "67adbeb8b51146dd",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "グラフビュー"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c772926e4f50bfcb",
+    "type": "split",
+    "children": [
+      {
+        "id": "921e431f4f8e98d1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2cf88675ee9ec6e5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "30702e405ae003d7",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "64eeea9864c036e4",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "eda45818ea82b257",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd231bcc7a3cd690",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dff8aad04d8add9d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Welcomeへのバックリンク"
+            }
+          },
+          {
+            "id": "ea94137dbc6c3dac",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Welcomeからのアウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "9fd5cab0570de81f",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "323b9d7c39e480c9",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "すべてのプロパティ"
+            }
+          },
+          {
+            "id": "146f8da16e9e5b1d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Welcomeのアウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "67adbeb8b51146dd",
+  "lastOpenFiles": [
+    "Desktop_Backup/マネキャット/タイトル.txt",
+    "Desktop_Backup/マネキャット/ChatGPT Image 2025年12月5日 15_33_00.png",
+    "Desktop_Backup/マネキャット/ChatGPT Image 2025年12月5日 14_21_07.png",
+    "Desktop_Backup/マネキャット/004_発信設計Q&A_めあり先生レター_20251207.md",
+    "Desktop_Backup/マネキャット/003_構成のポイント_20251207.md",
+    "Desktop_Backup/マネキャット/002_マネキャット現在地_目標整理_20251207.md",
+    "Desktop_Backup/マネキャット/001_がんばらなくてOK_わたしがふわっと副業をはじめた理由_20251207.md",
+    "Desktop_Backup/マネキャット",
+    "Desktop_Backup/トレンドブログ作成/src/__init__.py",
+    "Desktop_Backup/トレンドブログ作成/src/topic_collector.py",
+    "Desktop_Backup/トレンドブログ作成/src/stance_manager.py",
+    "Desktop_Backup/トレンドブログ作成/src/stance_checker.py",
+    "Desktop_Backup/トレンドブログ作成/src/article_generator.py",
+    "Desktop_Backup/トレンドブログ作成/prompts/__init__.py",
+    "Desktop_Backup/トレンドブログ作成/prompts/stance_check.py",
+    "Desktop_Backup/トレンドブログ作成/prompts/article_generation.py",
+    "Desktop_Backup/トレンドブログ作成/設計議論.md",
+    "Desktop_Backup/トレンドブログ作成/USAGE.md",
+    "Desktop_Backup/トレンドブログ作成/stance_sheet.yaml",
+    "Desktop_Backup/トレンドブログ作成/README.md",
+    "Desktop_Backup/ディスコード保存/discord-chat-exporter-extension/トラブルシューティング.md",
+    "Desktop_Backup/ディスコード保存/discord-chat-exporter-extension/インストール手順.md",
+    "Desktop_Backup/ディスコード保存/discord-chat-exporter-extension/アイコンの作成方法.md",
+    "Desktop_Backup/ディスコード保存/discord-chat-exporter-extension/README.md",
+    "Desktop_Backup/ディスコード保存/discord-chat-exporter-extension/Edge対応.md",
+    "Desktop_Backup/ディスコード保存/トークン取得ができない場合.md",
+    "Desktop_Backup/ディスコード保存/トークン取得_公式方法.md",
+    "Desktop_Backup/ディスコード保存/ダウンロード方法.md",
+    "Desktop_Backup/ディスコード保存/コマンド集.md",
+    "Desktop_Backup/ディスコード保存/README.md",
+    "Desktop_Backup/ディスコード保存/Headersタブの見つけ方.md",
+    "Desktop_Backup/ディスコード保存/GUI版の見つけ方.md",
+    "Desktop_Backup/ディスコード保存/GUI版_詳細ガイド.md",
+    "Desktop_Backup/ディスコード保存/GUI版_トークン取得手順.md",
+    "Desktop_Backup/ディスコード保存/CLI版の使い方.md",
+    "Desktop_Backup/ツール開発/開発ツール一覧.md",
+    "Desktop_Backup/ツールWEB化/拡張機能　Web管理計画.md",
+    "Desktop_Backup/ツールWEB化/pythonツールWEBツール化計画.md",
+    "Desktop_Backup/スライド作成/screenshot-20250825-120538.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/9.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/8.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/7.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/6.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/5.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/4.png",
+    "Desktop_Backup/ココナラ新サービス/新商品/3.png",
+    "無題のファイル.canvas",
+    "無題のファイル 1.canvas",
+    "無題のファイル 2.canvas",
+    "無題のファイル 3.canvas",
+    "ユニコの脳みそ.canvas"
+  ]
+}

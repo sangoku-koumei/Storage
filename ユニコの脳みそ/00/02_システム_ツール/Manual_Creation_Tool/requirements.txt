@@ -1,0 +1,10 @@
+streamlit
+openai
+pandas
+jinja2
+python-pptx
+requests
+beautifulsoup4
+duckduckgo-search
+reportlab
+pypdf
